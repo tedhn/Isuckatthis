@@ -22,11 +22,19 @@ export default function App(){
 	]);
 
 	const addChat = text =>{
-		const newChat = [...chat , [text , "Y"] ]
+		chat.push({ text:text , user:'Y'});
 		console.log("REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE")
-		setChat(newChat);
-		console.table(chat)
-	}
+		setChat(chat);
+		console.table(chat);
+	};
+
+	const show = ( {chat} ) => (	
+			<div className={ chat.user=== 'O' ? 'messageboxO' : 'messageboxY'  }>
+				<div className='message'>
+					{chat.text}
+				</div>
+			</div>
+	)
 
 	return(
 		<div className='app'>
@@ -44,7 +52,7 @@ export default function App(){
 						<Show chat={text} key={index}/>
 					))}
 				</div>
-
+				{console.table(chat)}
 				<Form addChat={addChat}/>
 
 		</div>
